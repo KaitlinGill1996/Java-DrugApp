@@ -17,6 +17,7 @@ class FavouriteDrugsTest {
     private Drug testDrug5;
     private Drug testDrug6;
     private Drug testDrug7;
+    private Drug testDrug8;
 
     @BeforeEach
     public void runBefore() {
@@ -30,7 +31,9 @@ class FavouriteDrugsTest {
         testDrug5 = new Drug("Quinapril", "Accupril", "ACEI", 0.23);
         testDrug6 = new Drug("Benazapril", "Lotensin", "ACEI", 0.49);
         testDrug7 = new Drug("Rosuvastatin", "Crestor", "Statin", 0.24);
+        testDrug8 = new Drug("Candesartan", "Atacand", "Statin", 0.82);
     }
+
     @Test
     void testConstructor() {
         assertEquals(0, testFavouriteDrugs.getNumDrugs()); // check empty list of drugs
@@ -109,6 +112,9 @@ class FavouriteDrugsTest {
         assertEquals(testDrug1, testFavouriteDrugs.getExpensiveDrug()); // test boundary case
         testFavouriteDrugs.addDrug(testDrug4);
         assertEquals(testDrug1, testFavouriteDrugs.getExpensiveDrug()); // test for when 2 drugs with same price
+        testFavouriteDrugs.addDrug(testDrug8);
+        assertEquals(testDrug8, testFavouriteDrugs.getExpensiveDrug()); // test when expensive drug is farther in list
+
     }
 
     @Test
