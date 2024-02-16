@@ -32,6 +32,8 @@ class DrugTest {
         assertEquals(0.50, testDrug1.getUnitCost());
         testDrug1.updateCost(0.65);
         assertEquals(0.65, testDrug1.getUnitCost());
+        testDrug2.updateCost(0.40);
+        assertEquals(0.40, testDrug2.getUnitCost());
     }
 
 }
