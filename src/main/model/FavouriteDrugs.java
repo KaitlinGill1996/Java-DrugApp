@@ -17,7 +17,6 @@ public class FavouriteDrugs {
         favouriteDrugs.add(drug);
     }
 
-
     // MODIFIES: this
     // EFFECTS: removes a drug to the favouriteDrugs list
     public void removeDrug(Drug drug) {

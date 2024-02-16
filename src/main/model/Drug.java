@@ -16,7 +16,6 @@ public class Drug {
         this.price = price;
     }
 
-
     public String getGenName() {
         return this.genName;
     }
