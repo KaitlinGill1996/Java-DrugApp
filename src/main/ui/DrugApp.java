@@ -6,7 +6,7 @@ import model.FavouriteDrugs;
 import java.util.Scanner;
 
 
-// Drug application - that allows you to create a drug list and find cheapest/expensive drugs
+// Drug application - that allows you to create a drug list and find the cheapest/expensive drugs
 // Code inspired by TellerApp provided by CPSC 210
 public class DrugApp {
     private FavouriteDrugs favouriteDrugs;
@@ -40,7 +40,7 @@ public class DrugApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes drug list
+    // EFFECTS: initializes empty drug list
     private void init() {
         favouriteDrugs = new FavouriteDrugs();
         input = new Scanner(System.in);
@@ -80,7 +80,7 @@ public class DrugApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: create a new drug to add to the list
+    // EFFECTS: create a new drug and then adds it to the list
     private void createNewDrug() {
         System.out.println("\nEnter the generic name of the drug:");
         String g = input.next();
@@ -96,7 +96,7 @@ public class DrugApp {
 
     // REQUIRES: favouriteDrugList.getNumDrugs > 0
     // MODIFIES: this
-    // EFFECTS: removes the entered drug from the list
+    // EFFECTS: removes the entered drug from the list, if not found returns error message
     private void removeDrugFromList() {
         if (favouriteDrugs.getNumDrugs() == 0) {
             System.out.println("There are no drugs in the list");
@@ -114,7 +114,8 @@ public class DrugApp {
     }
 
 
-    // EFFECTS: finds the cheapest drug in the list and prints the generic name of it
+    // EFFECTS: finds the cheapest drug in the list and prints the generic name of it, gives
+    // return message of empty list if no drugs are in the list
     private void findCheapestDrug() {
         if (favouriteDrugs.getNumDrugs() == 0) {
             System.out.println("There are no drugs in the list");
@@ -125,7 +126,8 @@ public class DrugApp {
         }
     }
 
-    // EFFECTS: prints the generic names of drugs in the list
+    // EFFECTS: prints the generic names of all the drugs in the list and gives
+    // return message of empty list if no drugs are in the list
     private void getFavouriteDrugs() {
         if (favouriteDrugs.getNumDrugs() == 0) {
             System.out.println("There are no drugs in the list");
@@ -136,7 +138,8 @@ public class DrugApp {
         }
     }
 
-    // EFFECTS: finds the cheapest drug in the list and prints the generic name of it
+    // EFFECTS: finds the cheapest drug in the list and prints the generic name of it and gives
+    // return message of empty list if no drugs are in the list
     private void getMostExpensiveDrug() {
         if (favouriteDrugs.getNumDrugs() == 0) {
             System.out.println("There are no drugs in the list");
@@ -147,7 +150,8 @@ public class DrugApp {
         }
     }
 
-    // EFFECTS: returns all the drugs in the entered class
+    // EFFECTS: returns all the drugs in the entered class, gives
+    // return message of empty list if no drugs are in the list
     private void getDrugsInClass() {
         if (favouriteDrugs.getNumDrugs() == 0) {
             System.out.println("There are no drugs in the list");

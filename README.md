@@ -31,4 +31,3 @@ User Stories:
 - As a user, I want to be able to return the most expensive drug (by unit price) in my list of drugs
 - As a user, I want to be able to find the cheapest drug (by unit price) in my list of favourite drugs
 - As a user, I want to be able to return all drugs from the same class in my list
-- As a user, I want to be able to update the cost of a drug to reflect any changes in pricing
