@@ -1,0 +1,14 @@
+{"drugs": [
+  {
+    "brandName": "Crestor",
+    "genName": "Rosuvastatin",
+    "price": 0.39,
+    "drugClass": "Statin"
+  },
+  {
+    "brandName": "Pariet",
+    "genName": "Rabeprazole",
+    "price": 0.23,
+    "drugClass": "PPI"
+  }
+]}
