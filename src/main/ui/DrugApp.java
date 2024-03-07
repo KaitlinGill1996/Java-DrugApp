@@ -2,15 +2,23 @@ package ui;
 
 import model.Drug;
 import model.FavouriteDrugs;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 
 // Drug application - that allows you to create a drug list and find the cheapest/expensive drugs
 // Code inspired by TellerApp provided by CPSC 210
 public class DrugApp {
+    private static final String JSON_STORE = "./data/favouriteDrugs.json";
     private FavouriteDrugs favouriteDrugs;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
 
     // EFFECTS: runs the drug application
     public DrugApp() {
@@ -37,6 +45,7 @@ public class DrugApp {
             }
 
         }
+        System.out.println("\nGoodbye!");
     }
 
     // MODIFIES: this
@@ -45,6 +54,8 @@ public class DrugApp {
         favouriteDrugs = new FavouriteDrugs();
         input = new Scanner(System.in);
         input.useDelimiter("\n");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -62,6 +73,10 @@ public class DrugApp {
             getMostExpensiveDrug();
         } else if (command.equals("f")) {
             getDrugsInClass();
+        } else if (command.equals("g")) {
+            saveFavouriteDrugs();
+        } else if (command.equals("h")) {
+            loadFavouriteDrugs();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -76,6 +91,8 @@ public class DrugApp {
         System.out.println("\td -> Find cheapest drug in list");
         System.out.println("\te -> Find most expensive drug in list");
         System.out.println("\tf -> Return all drugs in a class");
+        System.out.println("\tg -> Save favourite drug list to file");
+        System.out.println("\th -> Load favourite drug list from file");
         System.out.println("\tq -> Quit");
     }
 
@@ -161,6 +178,29 @@ public class DrugApp {
             for (Drug d : favouriteDrugs.getDrugsInSameClass(drugInClass)) {
                 System.out.println(d.getGenName());
             }
+        }
+    }
+
+    // EFFECTS: saves the favourite drug list to file
+    private void saveFavouriteDrugs() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(favouriteDrugs);
+            jsonWriter.close();
+            System.out.println("Saved favourite drugs to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads workroom from file
+    private void loadFavouriteDrugs() {
+        try {
+            favouriteDrugs = jsonReader.read();
+            System.out.println("Loaded favourite drugs from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

@@ -31,3 +31,5 @@ User Stories:
 - As a user, I want to be able to return the most expensive drug (by unit price) in my list of drugs
 - As a user, I want to be able to find the cheapest drug (by unit price) in my list of favourite drugs
 - As a user, I want to be able to return all drugs from the same class in my list
+- As a user, when I select the quit option from the application menu, I want to be reminded to save my to-do list to file and have the option to do so or not.
+- As a user, when I start the application, I want to be given the option to load my to-do list from file.

@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // represents a drug having a generic name, brand name, drug class, and price per unit (capsule/
 // tablet) in dollars
-public class Drug {
+public class Drug implements Writable {
     private String genName;        // generic name
     private String brandName;      // brand name
     private String drugClass;      // drug class
@@ -36,5 +39,15 @@ public class Drug {
     // EFFECTS: updates the price of a drug
     public void updateCost(double cost) {
         this.price = cost;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("genName", genName);
+        json.put("brandName", brandName);
+        json.put("drugClass", drugClass);
+        json.put("price", price);
+        return json;
     }
 }

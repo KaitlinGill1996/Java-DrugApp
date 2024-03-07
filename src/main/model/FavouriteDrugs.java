@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // represents a list of drugs that have been manually added by user
-public class FavouriteDrugs {
+public class FavouriteDrugs implements Writable {
     private ArrayList<Drug> favouriteDrugs;
 
     // EFFECTS creates an empty favouriteDrugs list
@@ -71,6 +75,22 @@ public class FavouriteDrugs {
             }
         }
         return drugsInSameClass;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("drugs", drugsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray drugsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Drug d : favouriteDrugs) {
+            jsonArray.put(d.toJson());
+        }
+        return jsonArray;
     }
 
 }
