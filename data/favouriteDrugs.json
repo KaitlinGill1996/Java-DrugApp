@@ -1,0 +1,20 @@
+{"drugs": [
+    {
+        "brandName": "Dilaudid",
+        "genName": "Hydromorphone",
+        "price": 0.34,
+        "drugClass": "Opioid"
+    },
+    {
+        "brandName": "Atacand",
+        "genName": "Candesartan",
+        "price": 0.34,
+        "drugClass": "ARB"
+    },
+    {
+        "brandName": "Altace",
+        "genName": "Ramipril",
+        "price": 0.12,
+        "drugClass": "ACEI"
+    }
+]}
