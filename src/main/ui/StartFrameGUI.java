@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 public class StartFrameGUI extends JFrame implements ActionListener {
     private JLabel startLabel;
     private JButton newStartButton;
+    private ImageIcon imageIcon;
 
 
     public StartFrameGUI() {
@@ -27,11 +28,11 @@ public class StartFrameGUI extends JFrame implements ActionListener {
     }
 
     public void createStartImageJLabel() {
-        // ImageIcon imageIcon = new ImageIcon();
+        imageIcon = new ImageIcon("DrugRack.png");
         startLabel = new JLabel();
         startLabel.setText("Welcome to DrugApp");
-        startLabel.setBounds(232, 200, 200, 200);
-        // .setIcon(imageIcon);
+        startLabel.setBounds(225, 200, 400, 400);
+        startLabel.setIcon(imageIcon);
     }
 
     public void createStartButton() {
@@ -40,8 +41,6 @@ public class StartFrameGUI extends JFrame implements ActionListener {
         newStartButton.setText("Start");
         newStartButton.setFocusable(false);
     }
-
-
 
 
     @Override

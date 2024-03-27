@@ -1,14 +1,32 @@
 {"drugs": [
     {
-        "brandName": "Crestor",
-        "genName": "Rosuvastatin",
-        "price": 0.56,
-        "drugClass": "Statin"
-    },
-    {
         "brandName": "Altace",
         "genName": "Ramipril",
-        "price": 0.21,
+        "price": 0.12,
         "drugClass": "ACEI"
+    },
+    {
+        "brandName": "Atacand",
+        "genName": "Candesartan",
+        "price": 1.23,
+        "drugClass": "ARB"
+    },
+    {
+        "brandName": "Dilaudid",
+        "genName": "Hydromorphone",
+        "price": 1.64,
+        "drugClass": "Opioid"
+    },
+    {
+        "brandName": "Methadose",
+        "genName": "Methadone",
+        "price": 2.13,
+        "drugClass": "Opioid"
+    },
+    {
+        "brandName": "Norvasc",
+        "genName": "Amlodipine",
+        "price": 0.87,
+        "drugClass": "CCB"
     }
 ]}

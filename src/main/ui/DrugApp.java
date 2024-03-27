@@ -204,4 +204,8 @@ public class DrugApp {
         }
     }
 
+    public static String getJsonStore() {
+        return JSON_STORE;
+    }
+
 }

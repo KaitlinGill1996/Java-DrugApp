@@ -2,12 +2,17 @@ package ui;
 
 import model.Drug;
 import model.FavouriteDrugs;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 
 public class DrugAppGUI extends JFrame implements ActionListener {
@@ -32,6 +37,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     private JTextField brandNameField;
     private JTextField drugClassField;
     private JTextField priceField;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     public DrugAppGUI() {
         JFrame frame = new JFrame(); //creates new Frame
@@ -58,6 +65,10 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newExpensiveDrugButton.addActionListener(this);
         newDrugsInClassButton.addActionListener(this);
         newQuitButton.addActionListener(this);
+        newDrugListButton.addActionListener(this);
+        newDrugLoadButton.addActionListener(this);
+        jsonWriter = new JsonWriter(DrugApp.getJsonStore());
+        jsonReader = new JsonReader(DrugApp.getJsonStore());
         this.setVisible(true); // makes the frame visible
     }
 
@@ -188,6 +199,12 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         if (e.getSource() == newQuitButton) {
             quitApplication();
         }
+        if (e.getSource() == newDrugListButton) {
+            saveDrugList();
+        }
+        if (e.getSource() == newDrugLoadButton) {
+            loadDrugList();
+        }
     }
 
     public void createJTextFields() {
@@ -313,7 +330,27 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         if (choice == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
+    }
 
+    public void saveDrugList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(favouriteDrugs);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(null, "Drug list successfully saved!");
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Unable to write file.");
+        }
+    }
+
+    public void loadDrugList() {
+        try {
+            favouriteDrugs = jsonReader.read();
+            JOptionPane.showMessageDialog(null, "Drug list successfully loaded!");
+            displayDrugInformation();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Unable to read from file.");
+        }
     }
 
 
