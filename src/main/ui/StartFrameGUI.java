@@ -47,8 +47,8 @@ public class StartFrameGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newStartButton) {
-            MyFrameGUI myFrameGUI = new MyFrameGUI();
-            myFrameGUI.setVisible(true);
+            DrugAppGUI drugAppGUI = new DrugAppGUI();
+            drugAppGUI.setVisible(true);
             this.setVisible(false);
         }
     }
