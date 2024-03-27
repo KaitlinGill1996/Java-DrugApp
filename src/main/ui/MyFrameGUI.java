@@ -44,6 +44,7 @@ public class MyFrameGUI extends JFrame implements ActionListener {
         addButtonsToFrame();
         favouriteDrugs = new FavouriteDrugs();
         newDrugButton.addActionListener(this);
+        newRemoveDrugButton.addActionListener(this);
         this.setVisible(true); // makes the frame visible
     }
 
@@ -158,6 +159,9 @@ public class MyFrameGUI extends JFrame implements ActionListener {
         if (e.getSource() == newDrugButton) {
             addNewDrug();
         }
+        if (e.getSource() == newRemoveDrugButton) {
+            removeDrug();
+        }
     }
 
     public void addNewDrug() {
@@ -184,6 +188,21 @@ public class MyFrameGUI extends JFrame implements ActionListener {
             Drug newDrug = new Drug(genName, brandName, drugClass, price);
             favouriteDrugs.addDrug(newDrug);
             displayDrugInformation();
+        }
+    }
+
+    public void removeDrug() {
+        String enterGenericName = JOptionPane.showInputDialog(null,
+                "Enter generic name of the drug to remove:");
+        if (enterGenericName != null && !enterGenericName.isEmpty()) {
+            for (Drug d : favouriteDrugs.getFavouriteDrugs()) {
+                if (d.getGenName().equalsIgnoreCase(enterGenericName)) {
+                    favouriteDrugs.removeDrug(d);
+                    displayDrugInformation();
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Drug with specified generic name not found.");
         }
     }
 
