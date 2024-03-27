@@ -5,12 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// represents the GUI for the opening frame when the DrugApp opens up
 public class StartFrameGUI extends JFrame implements ActionListener {
     private JLabel startLabel;
     private JButton newStartButton;
     private ImageIcon imageIcon;
+    private JLabel welcomeLabel;
 
-
+// MODIFIES: this
+// EFFECTS: creates the frame and adds JLabels and JButtons
     public StartFrameGUI() {
         JFrame frame = new JFrame(); //creates new Frame
         this.setLayout(null);
@@ -21,20 +24,25 @@ public class StartFrameGUI extends JFrame implements ActionListener {
         this.getContentPane().setBackground(new Color(173,214,235));
         createStartImageJLabel();
         this.add(startLabel);
+        createWelcomeLabel();
+        this.add(welcomeLabel);
         createStartButton();
         this.add(newStartButton);
         newStartButton.addActionListener(this);
         this.setVisible(true);
     }
 
+    // EFFECTS: creates the image on the opening start panel
     public void createStartImageJLabel() {
-        imageIcon = new ImageIcon("DrugRack.png");
+        imageIcon = new ImageIcon(getClass().getResource("BlueBottle.png"));
+        Image drugImage = imageIcon.getImage().getScaledInstance(225, 225, Image.SCALE_SMOOTH);
+        ImageIcon drugIcon = new ImageIcon(drugImage);
         startLabel = new JLabel();
-        startLabel.setText("Welcome to DrugApp");
-        startLabel.setBounds(225, 200, 400, 400);
-        startLabel.setIcon(imageIcon);
+        startLabel.setBounds(190, 50, 400, 400);
+        startLabel.setIcon(drugIcon);
     }
 
+    // EFFECTS: creates the start JButton
     public void createStartButton() {
         newStartButton = new JButton();
         newStartButton.setBounds(200, 500, 200, 30);
@@ -42,7 +50,15 @@ public class StartFrameGUI extends JFrame implements ActionListener {
         newStartButton.setFocusable(false);
     }
 
+    // EFFECTS: creates the th  JLabel for the welcome to DrugApp title
+    public void createWelcomeLabel() {
+        welcomeLabel = new JLabel();
+        welcomeLabel.setText("Welcome to DrugApp!");
+        welcomeLabel.setBounds(230,400, 300, 30);
+    }
 
+    // MODIFIES: this
+    // EFFECTS: opens the DrugAppGUI frame when the start button is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newStartButton) {

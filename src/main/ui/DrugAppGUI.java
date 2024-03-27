@@ -13,9 +13,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
-
+// represents the GUI for the main frame of the DrugApp
 public class DrugAppGUI extends JFrame implements ActionListener {
+    private JFrame frame;
     private JButton newDrugButton;
     private JButton newDrugListButton;
     private JButton newDrugLoadButton;
@@ -25,11 +25,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     private JButton newDrugsInClassButton;
     private JButton newQuitButton;
     private JPanel grayPanel;
-    private JPanel drugPanel;
     private JPanel panel;
     private JPanel greenPanel;
-    private JLabel drugPanelLabel;
-    private JLabel grayPanelLabel;
     private JLabel menuLabel;
     private JLabel drugListLabel;
     private FavouriteDrugs favouriteDrugs;
@@ -40,14 +37,10 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    // EFFECTS: creates the JFrame and adds JLabels and JButtons for the DrugApp GUI
     public DrugAppGUI() {
         JFrame frame = new JFrame(); //creates new Frame
-        this.setLayout(null);
-        this.setTitle("DrugApp"); //frame title
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exits app when clicking x
-        this.setResizable(false); //stops frame getting resized
-        this.setSize(900, 600); // x and y dimensions of frame
-        this.getContentPane().setBackground(new Color(173,214,235));
+        createMainJFrame();
         createGreenPanel();
         this.add(greenPanel);
         createMenuJLabel();
@@ -57,7 +50,6 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         createGrayPanel();
         this.add(grayPanel);
         createButtonsForFrame();
-        addButtonsToFrame();
         favouriteDrugs = new FavouriteDrugs();
         newDrugButton.addActionListener(this);
         newRemoveDrugButton.addActionListener(this);
@@ -72,6 +64,19 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         this.setVisible(true); // makes the frame visible
     }
 
+    // MODIFIES: This
+    // EFFECTS: creates the main JFrame for the GUI
+    public void createMainJFrame() {
+        this.setLayout(null);
+        this.setTitle("DrugApp"); //frame title
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exits app when clicking x
+        this.setResizable(false); //stops frame getting resized
+        this.setSize(900, 600); // x and y dimensions of frame
+        this.getContentPane().setBackground(new Color(173,214,235));
+
+    }
+
+    // EFFECTS: creates a JButton to add a new drug to the list
     public void createNewDrugButton() {
         newDrugButton = new JButton();
         newDrugButton.setBounds(20, 60, 200, 30);
@@ -79,6 +84,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newDrugButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to remove a drug from the list
     public void createRemoveDrugButton() {
         newRemoveDrugButton = new JButton();
         newRemoveDrugButton.setBounds(20, 120, 200, 30);
@@ -86,6 +92,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newRemoveDrugButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to find the cheapest drug in the list
     public void createNewCheapestDrugButton() {
         newCheapDrugButton = new JButton();
         newCheapDrugButton.setBounds(20, 180, 200, 30);
@@ -93,6 +100,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newCheapDrugButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to find the most expensive drug in the list
     public void createNewExpensiveDrugButton() {
         newExpensiveDrugButton = new JButton();
         newExpensiveDrugButton.setBounds(20, 240, 200, 30);
@@ -100,6 +108,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newExpensiveDrugButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to return all drugs in the same class
     public void createDrugsInClassButton() {
         newDrugsInClassButton = new JButton();
         newDrugsInClassButton.setBounds(20, 300, 200, 30);
@@ -107,6 +116,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newDrugsInClassButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to save all drugs to a list
     public void createNewSaveDrugListButton() {
         newDrugListButton = new JButton();
         newDrugListButton.setBounds(20, 360, 200, 30);
@@ -114,6 +124,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newDrugListButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to load list of drugs from file
     public void createNewLoadDrugListButton() {
         newDrugLoadButton = new JButton();
         newDrugLoadButton.setBounds(20, 420, 200, 30);
@@ -121,6 +132,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newDrugLoadButton.setFocusable(false);
     }
 
+    // EFFECTS: creates a JButton to exit the DrugApp
     public void createNewQuitButton() {
         newQuitButton = new JButton();
         newQuitButton.setBounds(20, 480, 200, 30);
@@ -128,6 +140,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         newQuitButton.setFocusable(false);
     }
 
+    // EFFECTS: creates all the JButtons for the menu panel
     private void createButtonsForFrame() {
         createNewDrugButton();
         createRemoveDrugButton();
@@ -140,6 +153,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         addButtonsToFrame();
     }
 
+    // MODIFIES: this
+    // Adds all the JButtons to the JFrame and adds ActionListener for each
     private void addButtonsToFrame() {
         this.add(newDrugButton);
         this.add(newRemoveDrugButton);
@@ -151,31 +166,36 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         this.add(newQuitButton);
     }
 
-
+    // EFFECTS: creates a Gray Panel
     public void createGrayPanel() {
         grayPanel = new JPanel();
         grayPanel.setBackground(Color.LIGHT_GRAY);
         grayPanel.setBounds(300, 60, 600, 460);
     }
 
+    // EFFECTS: creates a new JPanel
     public void createGreenPanel() {
         greenPanel = new JPanel();
         greenPanel.setBackground(new Color(173, 214, 235));
         greenPanel.setBounds(300, 500, 600, 100);
     }
 
+    // EFFECTS: creates a new JLabel for the DrugApp Menu
     public void createMenuJLabel() {
         menuLabel = new JLabel();
         menuLabel.setText("DrugApp Menu:");
         menuLabel.setBounds(65,20, 100, 30);
     }
 
+    // EFFECTS: creates a new JLabel for the top of the Drug List panel
     public void createDrugListLabel() {
         drugListLabel = new JLabel();
         drugListLabel.setText("Drug List:");
         drugListLabel.setBounds(600,20, 100, 30);
     }
 
+    // MODIFIES: This
+    // EFFECTS: determines actions performed when each JButton is clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newDrugButton) {
@@ -207,6 +227,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+
+    // EFFECTS: creates a JText field that allows you to enter fields for a new drug
     public void createJTextFields() {
         genNameField = new JTextField(10);
         brandNameField = new JTextField(10);
@@ -224,6 +246,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
 
     }
 
+    // MODIFIES: This
+    // EFFECTS: Adds a new drug to the list if okay is selected on the JOption Pane
     public void addNewDrug() {
         createJTextFields();
         int result = JOptionPane.showConfirmDialog(null, panel, "Add New Drug",
@@ -239,6 +263,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: removes a drug from the list if the generic name is entered
     public void removeDrug() {
         String enterGenericName = JOptionPane.showInputDialog(null,
                 "Enter generic name of the drug to remove:");
@@ -254,6 +279,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: returns the cheapest drug in the list and prints it onto the greenPanel
     public void displayCheapestDrug() {
         greenPanel.removeAll();
         greenPanel.setLayout(new BoxLayout(greenPanel, BoxLayout.Y_AXIS));
@@ -271,7 +297,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
-
+    // EFFECTS: returns the most expensive drug in the list and prints it onto the greenPanel
     public void displayExpensiveDrug() {
         greenPanel.removeAll();
         greenPanel.setLayout(new BoxLayout(greenPanel, BoxLayout.Y_AXIS));
@@ -289,7 +315,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
-
+    // EFFECTS: Takes each drug in the favouriteDrugs list and creates a JLabel for each that is added
+    // to the grayPanel
     public void displayDrugInformation() {
         grayPanel.removeAll();
         grayPanel.setLayout(new BoxLayout(grayPanel, BoxLayout.Y_AXIS));
@@ -308,6 +335,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         grayPanel.repaint();
     }
 
+    // EFFECTS: Takes each drug in the favouriteDrugs list that is in the entered class and creates a JLabel for each
+    // that is added to the greenPanel
     public void displayDrugsInSameClass(String drugClassName) {
         greenPanel.removeAll();
         greenPanel.setLayout(new BoxLayout(greenPanel, BoxLayout.Y_AXIS));
@@ -325,6 +354,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: quits the application once the quit button is selected
     public void quitApplication() {
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?");
         if (choice == JOptionPane.YES_OPTION) {
@@ -332,6 +362,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: saves the favouriteDrugs list to favouriteDrugs.json
     public void saveDrugList() {
         try {
             jsonWriter.open();
@@ -343,6 +374,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
         }
     }
 
+    // EFFECTS: loads the previously saved favouriteDrugs list from favouriteDrugs.json
     public void loadDrugList() {
         try {
             favouriteDrugs = jsonReader.read();

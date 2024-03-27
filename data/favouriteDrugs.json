@@ -1,32 +1,14 @@
 {"drugs": [
     {
-        "brandName": "Altace",
-        "genName": "Ramipril",
-        "price": 0.12,
-        "drugClass": "ACEI"
-    },
-    {
-        "brandName": "Atacand",
-        "genName": "Candesartan",
-        "price": 1.23,
-        "drugClass": "ARB"
+        "brandName": "Norvasc",
+        "genName": "Amlodipine",
+        "price": 0.325,
+        "drugClass": "CCB"
     },
     {
         "brandName": "Dilaudid",
         "genName": "Hydromorphone",
-        "price": 1.64,
+        "price": 0.34,
         "drugClass": "Opioid"
-    },
-    {
-        "brandName": "Methadose",
-        "genName": "Methadone",
-        "price": 2.13,
-        "drugClass": "Opioid"
-    },
-    {
-        "brandName": "Norvasc",
-        "genName": "Amlodipine",
-        "price": 0.87,
-        "drugClass": "CCB"
     }
 ]}
