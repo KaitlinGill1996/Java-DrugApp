@@ -1,5 +1,8 @@
 package ui;
 
+import model.Drug;
+import model.FavouriteDrugs;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,8 +19,12 @@ public class MyFrameGUI extends JFrame implements ActionListener {
     private JButton newDrugsInClassButton;
     private JButton newQuitButton;
     private JPanel grayPanel;
+    private JPanel drugPanel;
+    private JLabel drugPanelLabel;
     private JLabel grayPanelLabel;
     private JLabel menuLabel;
+    private JLabel drugListLabel;
+    private FavouriteDrugs favouriteDrugs;
 
     public MyFrameGUI() {
         JFrame frame = new JFrame(); //creates new Frame
@@ -25,14 +32,18 @@ public class MyFrameGUI extends JFrame implements ActionListener {
         this.setTitle("DrugApp"); //frame title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exits app when clicking x
         this.setResizable(false); //stops frame getting resized
-        this.setSize(600, 600); // x and y dimensions of frame
+        this.setSize(900, 600); // x and y dimensions of frame
         this.getContentPane().setBackground(new Color(173,214,235));
         createMenuJLabel();
         this.add(menuLabel);
+        createDrugListLabel();
+        this.add(drugListLabel);
         createGrayPanel();
         this.add(grayPanel);
         createButtonsForFrame();
         addButtonsToFrame();
+        favouriteDrugs = new FavouriteDrugs();
+        newDrugButton.addActionListener(this);
         this.setVisible(true); // makes the frame visible
     }
 
@@ -117,12 +128,17 @@ public class MyFrameGUI extends JFrame implements ActionListener {
 
 
     public void createGrayPanel() {
-        grayPanelLabel = new JLabel(); // create grayPanel label
-        grayPanelLabel.setText("Drug List");
         grayPanel = new JPanel();
         grayPanel.setBackground(Color.LIGHT_GRAY);
-        grayPanel.setBounds(300, 0, 350, 600);
-        grayPanel.add(grayPanelLabel);
+        grayPanel.setBounds(300, 60, 600, 600);
+    }
+
+    public void createDrugPanel() {
+        drugPanelLabel = new JLabel();
+        drugPanelLabel.setText("Drug List:");
+        drugPanel = new JPanel();
+        drugPanel.setBackground(Color.LIGHT_GRAY);
+        drugPanel.setBounds(300, 0, 600, 60);
     }
 
     public void createMenuJLabel() {
@@ -131,8 +147,64 @@ public class MyFrameGUI extends JFrame implements ActionListener {
         menuLabel.setBounds(65,20, 100, 30);
     }
 
+    public void createDrugListLabel() {
+        drugListLabel = new JLabel();
+        drugListLabel.setText("Drug List:");
+        drugListLabel.setBounds(600,20, 100, 30);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if (e.getSource() == newDrugButton) {
+            addNewDrug();
+        }
     }
+
+    public void addNewDrug() {
+        JTextField genNameField = new JTextField(10);
+        JTextField brandNameField = new JTextField(10);
+        JTextField drugClassField = new JTextField(10);
+        JTextField priceField = new JTextField(10);
+        JPanel panel = new JPanel(new GridLayout(0, 1));
+        panel.add(new JLabel("Generic Name:"));
+        panel.add(genNameField);
+        panel.add(new JLabel("Brand Name:"));
+        panel.add(brandNameField);
+        panel.add(new JLabel("Drug Class:"));
+        panel.add(drugClassField);
+        panel.add(new JLabel("Price:"));
+        panel.add(priceField);
+        int result = JOptionPane.showConfirmDialog(null, panel, "Add New Drug",
+                JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION) {
+            String genName = genNameField.getText();
+            String brandName = brandNameField.getText();
+            String drugClass = drugClassField.getText();
+            double price = Double.parseDouble(priceField.getText());
+            Drug newDrug = new Drug(genName, brandName, drugClass, price);
+            favouriteDrugs.addDrug(newDrug);
+            displayDrugInformation();
+        }
+    }
+
+    public void displayDrugInformation() {
+        grayPanel.removeAll();
+        grayPanel.setLayout(new BoxLayout(grayPanel, BoxLayout.Y_AXIS));
+        grayPanel.add(Box.createVerticalStrut(35));
+        for (int i = 0; i < favouriteDrugs.getNumDrugs(); i++) {
+            Drug drug = favouriteDrugs.getFavouriteDrugs().get(i);
+            JLabel drugLabel = new JLabel();
+            String indexString = String.valueOf(i + 1);
+            drugLabel.setText(indexString + ".  Generic Name: " + drug.getGenName()
+                    + "    Brand Name:  " + drug.getBrandName()  + "    Drug Class:  " + drug.getDrugClass()
+                    + "    Unit Cost:  "  + drug.getUnitCost());
+
+            grayPanel.add(drugLabel);
+        }
+        grayPanel.revalidate();
+        grayPanel.repaint();
+    }
+
+
+
 }
