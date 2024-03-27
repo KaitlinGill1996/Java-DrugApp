@@ -40,6 +40,6 @@ User Stories:
 - You can generate the second required action related to the user story "clicking the return the cheapest drug button" and the cheapest drug in the list will print in the bottom panel
 - You can also use the functionality of all the other buttons (selecting the most expensive drug button returns the most expensive drug in the list, selecting the drugs in a class button will) prompt you to enter a drug class and all drugs in this class will print in bottom panel)
 - You can also remove a drug from the list by selecting the remove drug from list button. If you enter the generic name of the drug, it will remove that drug from the list.
-- You can locate my visual component by...
+- You can locate my visual component by running main and it will be an an image on the opening start panel.
 - You can save the state of my application by clicking the save drug list button. You will receive a message that confirms it has been saved.
 - You can reload the state of my application by clicking the load drug list button. It will confirm the drugs have been loaded and then they will appear in the panel on the right.

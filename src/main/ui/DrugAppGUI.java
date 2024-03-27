@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 // represents the GUI for the main frame of the DrugApp
 public class DrugAppGUI extends JFrame implements ActionListener {
-    private JFrame frame;
     private JButton newDrugButton;
     private JButton newDrugListButton;
     private JButton newDrugLoadButton;
@@ -39,7 +38,6 @@ public class DrugAppGUI extends JFrame implements ActionListener {
 
     // EFFECTS: creates the JFrame and adds JLabels and JButtons for the DrugApp GUI
     public DrugAppGUI() {
-        JFrame frame = new JFrame(); //creates new Frame
         createMainJFrame();
         createGreenPanel();
         this.add(greenPanel);
@@ -67,6 +65,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     // MODIFIES: This
     // EFFECTS: creates the main JFrame for the GUI
     public void createMainJFrame() {
+        JFrame frame = new JFrame(); //creates new Frame
         this.setLayout(null);
         this.setTitle("DrugApp"); //frame title
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //exits app when clicking x
@@ -200,29 +199,22 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newDrugButton) {
             addNewDrug();
-        }
-        if (e.getSource() == newRemoveDrugButton) {
+        } else if  (e.getSource() == newRemoveDrugButton) {
             removeDrug();
-        }
-        if (e.getSource() == newCheapDrugButton) {
+        } else if (e.getSource() == newCheapDrugButton) {
             displayCheapestDrug();
-        }
-        if (e.getSource() == newExpensiveDrugButton) {
+        } else if (e.getSource() == newExpensiveDrugButton) {
             displayExpensiveDrug();
-        }
-        if (e.getSource() == newDrugsInClassButton) {
+        } else if (e.getSource() == newDrugsInClassButton) {
             String drugClassName = JOptionPane.showInputDialog(null, "Enter the drug class:");
             if (drugClassName != null && !drugClassName.isEmpty()) {
                 displayDrugsInSameClass(drugClassName);
             }
-        }
-        if (e.getSource() == newQuitButton) {
+        } else if (e.getSource() == newQuitButton) {
             quitApplication();
-        }
-        if (e.getSource() == newDrugListButton) {
+        } else if (e.getSource() == newDrugListButton) {
             saveDrugList();
-        }
-        if (e.getSource() == newDrugLoadButton) {
+        } else if (e.getSource() == newDrugLoadButton) {
             loadDrugList();
         }
     }
