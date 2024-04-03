@@ -19,12 +19,14 @@ public class FavouriteDrugs implements Writable {
     // EFFECTS: adds a drug to the favouriteDrugs list
     public void addDrug(Drug drug) {
         favouriteDrugs.add(drug);
+        EventLog.getInstance().logEvent(new Event("Drug added to favorite list: " + drug.getGenName()));
     }
 
     // MODIFIES: this
     // EFFECTS: removes a drug to the favouriteDrugs list
     public void removeDrug(Drug drug) {
         favouriteDrugs.remove(drug);
+        EventLog.getInstance().logEvent(new Event("Drug removed from favorite list: " + drug.getGenName()));
     }
 
     // EFFECTS: returns the number of drugs in the favouriteDrugs list
@@ -48,6 +50,7 @@ public class FavouriteDrugs implements Writable {
                 cheapestDrug = d;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Cheapest drug retrieved: " + cheapestDrug.getGenName()));
         return cheapestDrug;
     }
 
@@ -61,6 +64,7 @@ public class FavouriteDrugs implements Writable {
                 expensiveDrug = d;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Most expensive drug retrieved: " + expensiveDrug.getGenName()));
         return expensiveDrug;
     }
 

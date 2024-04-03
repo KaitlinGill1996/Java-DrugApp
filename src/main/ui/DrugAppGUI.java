@@ -1,6 +1,8 @@
 package ui;
 
 import model.Drug;
+import model.Event;
+import model.EventLog;
 import model.FavouriteDrugs;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -350,6 +352,8 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     public void quitApplication() {
         int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to quit?");
         if (choice == JOptionPane.YES_OPTION) {
+            EventLog eventLog = EventLog.getInstance(); // Get the EventLog instance
+            printLoggedEvents(eventLog); // Print the logged events
             System.exit(0);
         }
     }
@@ -374,6 +378,14 @@ public class DrugAppGUI extends JFrame implements ActionListener {
             displayDrugInformation();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Unable to read from file.");
+        }
+    }
+
+    // EFFECTS: prints all logged events to the console
+    private void printLoggedEvents(EventLog eventLog) {
+        System.out.println("Logged events:");
+        for (Event event : eventLog.getInstance()) {
+            System.out.println(event.getDescription());
         }
     }
 
