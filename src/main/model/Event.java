@@ -50,8 +50,8 @@ public class Event {
 
         Event otherEvent = (Event) other;
 
-        boolean b = this.dateLogged.equals(otherEvent.dateLogged) &&
-                this.description.equals(otherEvent.description);
+        boolean b = this.dateLogged.equals(otherEvent.dateLogged)
+                && this.description.equals(otherEvent.description);
         return b;
     }
 
