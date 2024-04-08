@@ -97,4 +97,12 @@ public class FavouriteDrugs implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: prints all logged events to the console
+    private void printLoggedEvents(EventLog eventLog) {
+        System.out.println("Logged events:");
+        for (Event event : eventLog.getInstance()) {
+            System.out.println(event.getDescription());
+        }
+    }
+
 }

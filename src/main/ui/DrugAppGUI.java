@@ -385,7 +385,7 @@ public class DrugAppGUI extends JFrame implements ActionListener {
     private void printLoggedEvents(EventLog eventLog) {
         System.out.println("Logged events:");
         for (Event event : eventLog.getInstance()) {
-            System.out.println(event.getDescription());
+            System.out.println(event.toString());
         }
     }
 

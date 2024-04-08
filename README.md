@@ -43,3 +43,34 @@ User Stories:
 - You can locate my visual component by running main and it will be an an image on the opening start panel.
 - You can save the state of my application by clicking the save drug list button. You will receive a message that confirms it has been saved.
 - You can reload the state of my application by clicking the load drug list button. It will confirm the drugs have been loaded and then they will appear in the panel on the right.
+
+
+*Phase 4: Task 2*
+
+When my program runs, it will open up the StartFrameGUI and then proceed to the DrugAppGUI. Upon exit, the following will print to console:
+"Logged events:"
+With the list of logged events that occurred since beginning to run the program.
+As an example, if the following events occur in order after opening the application:
+-Rosuvastatin is added to the drug list
+-Ramipril is added to the drug list
+-Find cheapest drug button is pressed
+-Find most expensive drug button is pressed
+-Ramipril is removed from the drug list
+
+Then the EventLog will print the following to the console (the dates will differ based on when application is used):
+Logged events:
+Mon Apr 08 00:46:35 PDT 2024
+Drug added to favorite list: Rosuvastatin
+Mon Apr 08 00:46:49 PDT 2024
+Drug added to favorite list: Ramipril
+Mon Apr 08 00:46:50 PDT 2024
+Cheapest drug retrieved: Rosuvastatin
+Mon Apr 08 00:46:52 PDT 2024
+Most expensive drug retrieved: Ramipril
+Mon Apr 08 00:47:00 PDT 2024
+Drug removed from favorite list: Ramipril
+
+*Phase 4: Task 3*
+
+Looking at my UML diagram, I can see that it may have been more effective to use something like the Singleton Pattern to ensure that there is only one single instance of the FavouriteDrug class within my application at a time. This would allow for global access to the class throughout my application, and considering that all the methods in my program are focusing on the same instance of my FavouriteDrug class, this would make it easier to edit and read the code in my application.
+Additionally, I notice I have a lot of duplicate code, especially in my DrugAppGUI class, where I do similar things like create each JPanel, JLabel, and JButton with a separate method. Refactoring this code into single methods and utilizing this method to create these pieces of my GUI would allow for much more readable code, and make it easier to make changes. These are easy improvements that I could, in the future, make to my code. 

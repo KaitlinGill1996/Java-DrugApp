@@ -1,6 +1,20 @@
-{"drugs": [{
-    "brandName": "Aerius",
-    "genName": "Desloratadine",
-    "price": 0.34,
-    "drugClass": "Antihistamine"
-}]}
+{"drugs": [
+    {
+        "brandName": "Diludid",
+        "genName": "Hydromorphone",
+        "price": 1.345,
+        "drugClass": "Opioid"
+    },
+    {
+        "brandName": "Reactine",
+        "genName": "Cetirizine",
+        "price": 0.53,
+        "drugClass": "Antihistamine"
+    },
+    {
+        "brandName": "Mucinex",
+        "genName": "Guaifenasin",
+        "price": 1.23,
+        "drugClass": "Expectorant"
+    }
+]}
