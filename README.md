@@ -7,7 +7,7 @@ your own choosing and use it as a quick reference.
 
 
 This would be a useful app for many healthcare professionals,
-especially pharmacists, as a quick reference when working. Other healthcare professionals can also
+especially pharmacists. Other healthcare professionals can also
 use it to help group common drugs they use.
  
 As a practicing pharmacist (and aspiring computer science
