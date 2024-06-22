@@ -1,17 +1,14 @@
-- *What will the application do?*
+- *What does the application do?*
 
 This application will allow you to create a list of drugs (grouped in whichever way you wish)
 and then return either the cheapest, or most expensive drug within the list. You can also return
 all the drugs from the same class within the list. You can edit and structure the list in the manner of
 your own choosing and use it as a quick reference.
 
-- *Who will use it?*
 
 This would be a useful app for many healthcare professionals,
 especially pharmacists, as a quick reference when working. Other healthcare professionals can also
 use it to help group common drugs they use.
-
-- *Why is this project of interest to you?*
  
 As a practicing pharmacist (and aspiring computer science
 degree holder), this allows a blend of the two fields I am
