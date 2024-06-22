@@ -15,12 +15,3 @@ degree holder), this allows a blend of the two fields I am
 interested in. It allows me to make my own list of commonly used
 drugs in my practice and access information about them quickly. I have the freedom to add
 drugs of my choosing and use the appropriate brand name for the setting I am working in.
-
-
-
-As an example, if the following events occur in order after opening the application:
-- Rosuvastatin is added to the drug list
-- Ramipril is added to the drug list
-- Find cheapest drug button is pressed
-- Find most expensive drug button is pressed
-- Ramipril is removed from the drug list
